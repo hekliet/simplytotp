@@ -313,20 +313,15 @@ class TOTPApp:
                 parent=self.root)
             return
 
-        existing_names = {r.name for r in self.records}
         existing_uuids = {r.uuid for r in self.records if r.uuid}
 
         new_records = []
         skipped = 0
         for r in candidates:
-            if r.name in existing_names:
-                skipped += 1
-                continue
             if r.uuid and r.uuid in existing_uuids:
                 skipped += 1
                 continue
             new_records.append(r)
-            existing_names.add(r.name)
             if r.uuid:
                 existing_uuids.add(r.uuid)
 
